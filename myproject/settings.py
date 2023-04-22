@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "^5j#@n*!c6*g^phi@($0-shjyno9+nag6k&8%lgx8rze*c_&t4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = [
@@ -61,11 +61,12 @@ INSTALLED_APPS = [
     "channels",
     "friend",
     "videocall",
+    "storages",
+    "mediastorage.apps.MediastorageConfig",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -158,13 +159,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/static/"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-# STATICFILES_DIRS = ("static",)
 
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = "/media/"
+
+if DEBUG == False:
+    AWS_ACCESS_KEY_ID = "AKIAWVG4DOXXSG4WA37G"
+    AWS_SECRET_ACCESS_KEY = "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"
+    AWS_STORAGE_BUCKET_NAME = "duckbook-bucket"
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    AWS_LOCATION = "static"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    PUBLIC_MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "mediastorage.storage_backends.PublicMediaStorage"
+    PRIVATE_MEDIA_LOCATION = "private"
+    PRIVATE_FILE_STORAGE = "mediastorage.storage_backends.PrivateMediaStorage"
+else:
+    STATIC_URL = "/static/"
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    MEDIA_URL = "/media/"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
