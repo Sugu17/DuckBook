@@ -13,7 +13,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+import redis
 
+
+connection = redis.Redis(
+    host="redis-18288.c264.ap-south-1-1.ec2.cloud.redislabs.com",
+    port=18288,
+    password="sbACT1s5lFPXZcRq0YGExIsq6mAUAkVn",
+)
 # Loading ENV
 env_path = Path(".") / ".env"
 
@@ -180,7 +187,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "sugumarsg17@gmail.com"  # environment variable containing username
 EMAIL_HOST_PASSWORD = "IamPenguin17@"  # environment variable containing password
 
-GOOGLE_RECAPTCHA_SECRET_KEY ="6Lfy96clAAAAAODV1V3nq9YYGfd1MLy3rTruai8R"
+GOOGLE_RECAPTCHA_SECRET_KEY = "6Lfy96clAAAAAODV1V3nq9YYGfd1MLy3rTruai8R"
 
 MESSAGE_TAGS = {
     messages.DEBUG: "alert-secondary",
@@ -193,7 +200,12 @@ MESSAGE_TAGS = {
 ASGI_APPLICATION = "myproject.routing.application"
 
 CHANNEL_LAYERS = {
-    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts":[("redis://default:sbACT1s5lFPXZcRq0YGExIsq6mAUAkVn@redis-18288.c264.ap-south-1-1.ec2.cloud.redislabs.com:18288")]
+        },
+    },
 }
 
 SITE_ID = 2  # considering 2nd site in 'Sites' to be 127.0.0.1 (for dev)
@@ -216,5 +228,3 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     },
 }
-AGORA_APP_ID = "72e7bf5bbae84c9e8c089ac74276723c"
-AGORA_APP_CERTIFICATE = "af1779234e1b4dd0b8b49977217f6267"

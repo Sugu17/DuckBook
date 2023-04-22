@@ -22,24 +22,24 @@ def lobby(request):
 
 def room(request):
     return render(request, 'videocall/room.html')
-    # vc_UID = request.POST["vc_UID"]
-    # vc_token = request.POST["vc_token"]
-    # vc_to = request.POST["vc_to"]
-    # vc_from = request.POST["vc_from"]
+    vc_UID = request.POST["vc_UID"]
+    vc_token = request.POST["vc_token"]
+    vc_to = request.POST["vc_to"]
+    vc_from = request.POST["vc_from"]
 
-    # friends = FriendList.objects.filter(user=request.user)[0].friends.all()
-    # id_list = list(friends.values_list('id',flat=True))
+    friends = FriendList.objects.filter(user=request.user)[0].friends.all()
+    id_list = list(friends.values_list('id',flat=True))
 
-    # context = {
-    #     'UID': vc_UID,
-    #     'token': vc_token,
-    #     'room': "VCROOM_" + vc_to + "_" + vc_from if vc_to < vc_from else "VCROOM_" + vc_from + "_" + vc_to,
-    #     'name': request.user.username
-    # }
-    # if vc_to in id_list and vc_from == str(request.user.id):
-    #     return render(request, 'videocall/room.html', context)
-    # else:
-    #     redirect('vc-lobby')
+    context = {
+        'UID': vc_UID,
+        'token': vc_token,
+        'room': "VCROOM_" + vc_to + "_" + vc_from if vc_to < vc_from else "VCROOM_" + vc_from + "_" + vc_to,
+        'name': request.user.username
+    }
+    if vc_to in id_list and vc_from == str(request.user.id):
+        return render(request, 'videocall/room.html', context)
+    else:
+        redirect('vc-lobby')
 
 def validateVC(request,vc_to):
     friends = FriendList.objects.filter(user=request.user)[0].friends.all()
@@ -50,8 +50,8 @@ def validateVC(request,vc_to):
         return False
 
 def getToken(request):
-    appId = os.environ.get('AGORA_APP_ID')
-    appCertificate = os.environ.get('AGORA_APP_CERTIFICATE')
+    appId = '72e7bf5bbae84c9e8c089ac74276723c'
+    appCertificate = 'af1779234e1b4dd0b8b49977217f6267'
     channelName = request.GET.get('channel')
 
     try:
