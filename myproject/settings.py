@@ -13,20 +13,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
-import redis
-
-
-connection = redis.Redis(
-    host="redis-18288.c264.ap-south-1-1.ec2.cloud.redislabs.com",
-    port=18288,
-    password="sbACT1s5lFPXZcRq0YGExIsq6mAUAkVn",
-)
-# Loading ENV
-env_path = Path(".") / ".env"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
