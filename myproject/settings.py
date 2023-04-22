@@ -27,7 +27,7 @@ SECRET_KEY = "^5j#@n*!c6*g^phi@($0-shjyno9+nag6k&8%lgx8rze*c_&t4"
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 # Application definition
 
