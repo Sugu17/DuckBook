@@ -180,7 +180,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "sugumarsg17@gmail.com"  # environment variable containing username
 EMAIL_HOST_PASSWORD = "IamPenguin17@"  # environment variable containing password
 
-GOOGLE_RECAPTCHA_SECRET_KEY = "6Lfz96clAAAAALRrTb0kB9CehsPrfNao8mcgzexB"
+GOOGLE_RECAPTCHA_SECRET_KEY ="6Lfy96clAAAAAODV1V3nq9YYGfd1MLy3rTruai8R"
 
 MESSAGE_TAGS = {
     messages.DEBUG: "alert-secondary",
