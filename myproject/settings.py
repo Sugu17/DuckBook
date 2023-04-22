@@ -27,7 +27,7 @@ SECRET_KEY = "^5j#@n*!c6*g^phi@($0-shjyno9+nag6k&8%lgx8rze*c_&t4"
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com','https://*.127.0.0.1','https://*.pythonanywhere.com']
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
