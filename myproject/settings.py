@@ -27,7 +27,11 @@ SECRET_KEY = "^5j#@n*!c6*g^phi@($0-shjyno9+nag6k&8%lgx8rze*c_&t4"
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com','https://*.127.0.0.1','https://*.pythonanywhere.com']
+CSRF_TRUSTED_ORIGINS = [
+    "https://shalnas-app.onrender.com",
+    "https://127.0.0.1",
+    "https://Shalini0323.pythonanywhere.com",
+]
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
@@ -61,7 +65,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -155,9 +159,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-#STATICFILES_DIRS = ("static",)
+# STATICFILES_DIRS = ("static",)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -196,7 +200,11 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts":[("redis://default:sbACT1s5lFPXZcRq0YGExIsq6mAUAkVn@redis-18288.c264.ap-south-1-1.ec2.cloud.redislabs.com:18288")]
+            "hosts": [
+                (
+                    "redis://default:sbACT1s5lFPXZcRq0YGExIsq6mAUAkVn@redis-18288.c264.ap-south-1-1.ec2.cloud.redislabs.com:18288"
+                )
+            ]
         },
     },
 }
