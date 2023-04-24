@@ -115,13 +115,13 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 # }
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "pwnfzjwm",
-        "USER": "pwnfzjwm",
-        "PASSWORD": "AntAFrYIvB-B_87NyRLb9QHBYaMOgUM_",
-        "HOST": "arjuna.db.elephantsql.com",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'shalna_db',
+        'USER': 'shalna_db_user',
+        'PASSWORD': '9Hmm2ZkOGyuzwgoW7WxtYnzOWFbM4Mon',
+        'HOST': 'dpg-ch3beomsi8uk2tdhkp0g-a.singapore-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
