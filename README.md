@@ -23,8 +23,3 @@ To run tests, run the following command
   python manage.py test
 ```
 
-## Deploy to Heroku
-
-https://devcenter.heroku.com/articles/getting-started-with-python
-
-https://realpython.com/django-hosting-on-heroku/
