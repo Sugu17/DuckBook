@@ -15,11 +15,5 @@ A social media web-application with Django.
 <li>Video Calls</li>
 
 
-## Running Tests
 
-To run tests, run the following command
-
-```bash
-  python manage.py test
-```
 
